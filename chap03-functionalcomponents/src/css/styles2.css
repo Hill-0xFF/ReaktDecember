@@ -16,10 +16,7 @@
 }
 
 html {
-  /* font-family: 'Neucha', sans-serif; */
-  font-family: 'Press Start 2P', sans-serif;
-  /* font-family: 'Poppins', sans-serif; */
-  /* font-family: 'Courier New', Courier, monospace, sans-serif; */
+  font-family: 'Courier New', Courier, monospace, sans-serif;
 }
 
 body {
@@ -37,6 +34,8 @@ body {
     rgba(13, 101, 110, 1) 100%
   );
   color: #fff;
+  font-family: 'Dosis', sans-serif;
+  font-size: 2rem;
 }
 header {
   display: flex;
@@ -49,8 +48,7 @@ header {
   max-width: 800px;
   margin: auto;
   border: 0.5rem dashed green;
-  font-family: 'Neucha', sans-serif;
-  /* font-family: 'Press Start 2P', sans-serif; */
+  font-family: 'Press Start 2P', sans-serif;
   font-size: 2rem;
 }
 
@@ -72,6 +70,21 @@ section {
   justify-content: center;
   border: solid 3px lime;
   border-radius: 13px;
+}
+
+footer {
+  display: flex;
+  flex-flow: column nowrap;
+  background: linear-gradient(
+    rgba(110, 13, 11, 0.5) 0%,
+    rgba(13, 101, 110, 0.3) 100%
+  );
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  border: 0.5rem dashed green;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 2rem;
 }
 
 input,
