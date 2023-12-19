@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Mynerve&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Mynerve&family=PT+Sans+Narrow:wght@400;700&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Mynerve&family=PT+Sans+Narrow:wght@400;700&family=Shadows+Into+Light&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Mynerve&family=Orbitron:wght@400;500;600;700;800;900&family=PT+Sans+Narrow:wght@400;700&family=Shadows+Into+Light&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-family: 'Neucha', sans-serif; */
+  font-family: 'Press Start 2P', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  /* font-family: 'Courier New', Courier, monospace, sans-serif; */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 500px;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 13, 11, 1) 0%,
+    rgba(13, 101, 110, 1) 100%
+  );
+  color: #fff;
+}
+header {
+  display: flex;
+  flex-flow: column nowrap;
+  background: linear-gradient(
+    rgba(110, 13, 11, 0.5) 0%,
+    rgba(13, 101, 110, 0.3) 100%
+  );
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  border: 0.5rem dashed green;
+  font-family: 'Neucha', sans-serif;
+  /* font-family: 'Press Start 2P', sans-serif; */
+  font-size: 2rem;
+}
+
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  border: 4px solid black;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 150px;
+  justify-content: center;
+  border: solid 3px lime;
+  border-radius: 13px;
+}
+
+input,
+button {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  font: inherit;
+}
+
+.offscreen {
+  position: absolute;
+  left: -10000px;
+}
+
+.button {
+  border-radius: 13px;
+  min-height: 45px;
+  min-width: 45px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.newItemEntry {
+  /* position: sticky; annoying when scrolling down it will overflow other elements */
+  position: relative;
+  top: 0;
+  margin-bottom: 1rem;
+}
+
+.newItemEntry__form {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.5rem; /* fsz1.5rem */
+}
+
+.newItemEntry__input {
+  width: 100%;
+  flex-grow: 1;
+  border: 3px solid whitesmoke;
+  border-radius: 13px;
+  padding: 0.75rem;
+}
+
+.newItemEntry__button {
+  background-color: transparent;
+  color: seashell;
+  padding: 0.75rem;
+}
+
+.newItemEntry__button:hover,
+.newItemEntry__button:focus {
+  color: limegreen;
+}
+
+.listContainer {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+.listTitle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.listTitle__button {
+  background-color: transparent;
+  color: seashell;
+  padding: 0.75rem;
+}
+
+#listItems {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  list-style-type: upper-roman;
+}
+
+.item {
+  display: flex;
+  align-items: center; /*aic */
+  padding-top: 1rem;
+  gap: 1rem;
+}
+
+.item > input[type='checkbox'] {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.item > input[type='checkbox']:checked + label {
+  text-decoration: line-through;
+}
+
+.item > button:hover,
+.item > button:focus {
+  color: red;
+}
+
+.item > label {
+  word-break: break-all;
+  flex-grow: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* jcc */
+    align-items: center;
+  }
+
+  section {
+    box-sizing: border-box;
+    padding: 0.25rem;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* jcc */
+    align-items: center;
+  }
+
+  section {
+    box-sizing: border-box;
+    padding: 0.25rem;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* jcc */
+    align-items: center;
+  }
+
+  section {
+    box-sizing: border-box;
+    padding: 0.25rem;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* jcc */
+    align-items: center;
+  }
+
+  section {
+    box-sizing: border-box;
+    padding: 0.25rem;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  section {
+    box-sizing: border-box;
+    padding: 0.25rem;
+    width: 75%;
+  }
+}
