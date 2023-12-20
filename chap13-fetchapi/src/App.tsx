@@ -15,7 +15,7 @@ import Search from './components/Search';
 import { TItems } from './types/items.type';
 
 export default function App() {
-  const APIURL = `${import.meta.env.VITE_API_URL}`;
+  const APIURL = import.meta.env.VITE_API_URL;
 
   const [search, setSearch] = useState<string>('');
 
@@ -27,12 +27,27 @@ export default function App() {
       : localStorage.setItem('items', JSON.stringify([]))
   );
 
-  useEffect(
-    function () {
-      localStorage.setItem('items', JSON.stringify(items));
-    },
-    [items]
-  );
+  useEffect(() => {
+    const fetchItems = async function () {
+      try {
+        const response = await fetch(APIURL, {
+          method: 'GET',
+
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        console.log(data);
+        setItems(data);
+      } catch (err: unknown | TypeError) {
+        console.error(`\x1b[31mError during request: ${err}`);
+      }
+    };
+    (async function () {
+      await fetchItems();
+    })();
+  }, []);
 
   // const saveLocalStorage = (item: SetStateAction<TItems[]>) => {
   //   setItems(item);
