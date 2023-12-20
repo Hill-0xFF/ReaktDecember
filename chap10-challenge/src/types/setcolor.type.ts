@@ -1,6 +1,8 @@
-import { SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export type SetColorProps = {
-  setColor: React.Dispatch<SetStateAction<string>>;
+  setColor: Dispatch<SetStateAction<string>>;
+  // setHexValue: Dispatch<SetStateAction<string>>;
+  getColor: (colorName: string) => void;
   color: string;
 };
