@@ -21,6 +21,7 @@ export default function Item({
         className="button"
         role="button"
         tabIndex={0}
+        aria-label={`Delete ${item.item}`}
         onClick={() => handleDelete(item.id)}
       >
         <button>Delete</button>
