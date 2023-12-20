@@ -7,6 +7,7 @@ import AddItem from './components/AddItem';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Search from './components/Search';
 
 export default function App() {
   const [items, setItems] = useState<TItems[]>(
@@ -15,24 +16,7 @@ export default function App() {
       : localStorage.setItem('items', JSON.stringify([]))
   );
   const [newItem, setNewItem] = useState<string>('');
-
-  // const [items, setItems] = useState<TItems[]>([
-  //   {
-  //     id: 1,
-  //     checked: false,
-  //     item: 'One half pound bag of Cocoa Covered Almonds Unsalted',
-  //   },
-  //   {
-  //     id: 2,
-  //     checked: false,
-  //     item: 'Tomatoes',
-  //   },
-  //   {
-  //     id: 3,
-  //     checked: false,
-  //     item: 'Vanilla Ice Cream with Chocolate and Powerball',
-  //   },
-  // ]);
+  const [search, setSearch] = useState<string>('');
 
   const saveLocalStorage = (items: SetStateAction<TItems[]>) => {
     setItems(items);
@@ -74,11 +58,16 @@ export default function App() {
         newItem={newItem}
         addItem={addItem}
       />
+      <Search search={search} setSearch={setSearch} />
+
       <Content
-        items={items}
+        items={items.filter((item) =>
+          item.item.toLowerCase().includes(search.toLowerCase())
+        )}
         handleChangeCheckbox={handleChangeCheckbox}
         handleDelete={handleDelete}
       />
+
       <Footer length={items.length} />
     </>
   );
