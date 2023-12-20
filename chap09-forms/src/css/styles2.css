@@ -113,6 +113,7 @@ button {
 
 .button:hover {
   cursor: pointer;
+  outline: none;
 }
 
 .addForm {
@@ -121,7 +122,7 @@ button {
   width: 100%;
   margin: 0.5rem 0 0;
   padding: 0 0.5rem 0.25rem;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
 }
 
 .addForm label {
@@ -156,6 +157,29 @@ button {
   background-color: darkslategrey;
   color: limegreen;
   outline: none;
+}
+
+.searchForm {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0.5rem 0 0;
+  padding: 0 0.5rem 0.5rem;
+  /* border-bottom: 1px solid #eee; */
+}
+
+.searchForm label {
+  position: absolute;
+  left: -99999px;
+}
+
+.searchForm input[type='text'] {
+  flex-grow: 1;
+  max-width: calc(100% - 50px);
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .newItemEntry {
