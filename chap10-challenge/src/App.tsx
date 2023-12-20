@@ -166,8 +166,10 @@ export default function App() {
       const keyValue = Object.entries(colors).find(
         (colour) => colour[0] === colorName
       );
-      setHexValue(keyValue?.[1] ?? '');
+      keyValue?.[1] ? setHexValue(keyValue?.[1]) : setHexValue('');
+      return;
     }
+    setHexValue('');
     return;
   }
 
