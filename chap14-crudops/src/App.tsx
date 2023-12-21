@@ -1,12 +1,8 @@
 import { FormEvent, useState, useEffect } from 'react';
 
-// import dotenv from 'dotenv';
-
-// const dot = dotenv.config({ path: './.env' });
-// dotenv.config({});
-
 import './css/styles2.css';
 
+import ApiRequest from './api/api-request';
 import AddItem from './components/AddItem';
 import Content from './components/Content';
 import Footer from './components/Footer';
@@ -67,23 +63,56 @@ export default function App() {
   //   setItems(item);
   // };
 
-  const addItem = (item: string) => {
+  const addItem = async (item: string) => {
     const id: number = items?.length ? items[items.length - 1].id + 1 : 1;
     const objItem = { id, checked: false, item };
     const listItems = [...items, objItem];
     setItems(listItems);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objItem),
+    };
+    const url = APIURL;
+
+    const result = await ApiRequest({ url, options });
+    if (result) setFetchError(result);
   };
 
-  const handleChangeCheckbox = (id: number) => {
+  const handleChangeCheckbox = async (id: number) => {
     const listItem = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setItems(listItem);
+
+    const getItems = listItem.filter((item) => item.id === id);
+
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ checked: getItems[0].checked }),
+    };
+
+    const url = `${APIURL}/${id}`;
+    const result = await ApiRequest({ url, options });
+    if (result) setFetchError(result);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     const selectedItems = items.filter((item) => item.id !== id);
     setItems(selectedItems);
+
+    const options = {
+      method: 'DELETE',
+    };
+    const url = `${APIURL}/${id}`;
+    const result = await ApiRequest({ url, options });
+    if (result) setFetchError(result);
   };
 
   const handleSubmitButton = (evt: FormEvent<HTMLFormElement>) => {
