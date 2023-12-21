@@ -12,16 +12,17 @@ export default function Posts({ posts }: PostsProps) {
       {posts?.[0] && posts?.[0]?.id ? (
         <Post posts={posts} />
       ) : (
-        <p
-          style={{
-            backgroundColor: 'papayawhip',
-            color: 'black',
-            padding: '.75rem',
-            borderRadius: '.5rem',
-          }}
-        >
-          No posts on the list!
-        </p>
+        // <p
+        //   style={{
+        //     backgroundColor: 'papayawhip',
+        //     color: 'black',
+        //     padding: '.75rem',
+        //     borderRadius: '.5rem',
+        //   }}
+        // >
+        //   No posts on the list!
+        // </p>
+        ''
       )}
     </section>
   );

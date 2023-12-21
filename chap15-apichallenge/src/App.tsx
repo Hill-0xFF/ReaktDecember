@@ -28,7 +28,7 @@ export default function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchUsers = async function () {
+    const fetchUsersApi = async function () {
       try {
         const response = await fetch(APIUSERS, {
           method: 'GET',
@@ -45,12 +45,13 @@ export default function App() {
           throw Error('Did not received expected data!');
         }
         const data = await response.json();
-        console.log(data);
+
         setUsers(data);
         setFetchError(null);
         setErrorMessage('');
         setLoading(false);
-        console.log(`ErrorFetch: ${fetchError}`);
+        setPosts([]);
+        setComments([]);
       } catch (err: unknown | TypeError) {
         // console.error(`\x1b[31mError during request: ${err}`);
         if (err instanceof Error) setFetchError(err.message);
@@ -62,10 +63,93 @@ export default function App() {
 
     setTimeout(function () {
       (async function () {
-        await fetchUsers();
+        await fetchUsersApi();
       })();
     }, 2000);
   }, []);
+
+  const fetchUsers = async function () {
+    try {
+      const response = await fetch(APIUSERS, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) throw Error(`Did not received expected data!`);
+
+      const data = await response.json();
+      setUsers(data);
+
+      setFetchError(null);
+      setErrorMessage('');
+
+      setPosts([]);
+      setComments([]);
+    } catch (err) {
+      if (err instanceof Error) setFetchError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchPosts = async function () {
+    try {
+      const response = await fetch(APIPOSTS, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+          'Mime-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) throw Error(`Did not received expected data!`);
+      const data = await response.json();
+
+      setPosts(data);
+      setFetchError(null);
+      setErrorMessage('');
+      setLoading(false);
+
+      setUsers([]);
+      setComments([]);
+    } catch (err) {
+      if (err instanceof Error) setFetchError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchComments = async function () {
+    try {
+      const response = await fetch(APICOMMENTS, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) throw Error(`Did not received expected data!`);
+      const data = await response.json();
+
+      setComments(data);
+      setFetchError(null);
+      setLoading(false);
+
+      setPosts([]);
+      setUsers([]);
+    } catch (err) {
+      if (err instanceof Error) setFetchError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // const saveLocalStorage = (item: SetStateAction<TItems[]>) => {
   //   setUsers(item);
@@ -74,7 +158,11 @@ export default function App() {
   return (
     <>
       <Header title="JSONPLACEHOLDER CHALLENGE v.0.0.1" />
-      <Navbar />
+      <Navbar
+        fetchPosts={fetchPosts}
+        fetchComments={fetchComments}
+        fetchUsers={fetchUsers}
+      />
       <main>
         {loading && <Loading />}
         {fetchError && (
@@ -87,7 +175,7 @@ export default function App() {
         {!fetchError && !loading && <Posts posts={posts} />}
         {!fetchError && !loading && <Comments comments={comments} />}
       </main>
-      <Footer length={users?.length} />
+      <Footer />
     </>
   );
 }

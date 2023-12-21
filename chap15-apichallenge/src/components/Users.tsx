@@ -12,9 +12,10 @@ export default function Users({ users }: UsersProps) {
       {users?.[0]?.id ? (
         <User users={users} />
       ) : (
-        <p style={{ backgroundColor: 'papayawhip', color: 'black' }}>
-          No users on the list!
-        </p>
+        // <p style={{ backgroundColor: 'papayawhip', color: 'black' }}>
+        //   No users on the list!
+        // </p>
+        ''
       )}
     </section>
   );

@@ -8,7 +8,7 @@ export default function Comment({ comments }: CommentProps) {
   return (
     <ul>
       {comments?.map((commnt) => (
-        <li key={commnt.id}>
+        <li key={commnt.id} className="comments">
           <p>{commnt.postId}</p>
           <p>{commnt.name}</p>
           <p>{commnt.email}</p>

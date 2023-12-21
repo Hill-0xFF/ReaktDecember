@@ -8,9 +8,9 @@ export default function Post({ posts }: PostProps) {
   return (
     <ul>
       {posts?.map((post) => (
-        <li key={post.id}>
-          <p>{post.title}</p>
-          <p>{post.body}</p>
+        <li key={post.id} className="posts">
+          <p>Title: {post.title}</p>
+          <p>Content: {post.body}</p>
         </li>
       ))}
     </ul>

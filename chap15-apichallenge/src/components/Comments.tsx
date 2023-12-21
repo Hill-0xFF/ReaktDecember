@@ -12,16 +12,17 @@ export default function Comments({ comments }: CommentProps) {
       {comments?.[0] && comments?.[0]?.id ? (
         <Comment comments={comments} />
       ) : (
-        <p
-          style={{
-            backgroundColor: 'papayawhip',
-            color: 'black',
-            padding: '.75rem',
-            borderRadius: '.5rem',
-          }}
-        >
-          No comments on the list!
-        </p>
+        // <p
+        //   style={{
+        //     backgroundColor: 'papayawhip',
+        //     color: 'black',
+        //     padding: '.75rem',
+        //     borderRadius: '.5rem',
+        //   }}
+        // >
+        //   No comments on the list!
+        // </p>
+        ''
       )}
     </section>
   );

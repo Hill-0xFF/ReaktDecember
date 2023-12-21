@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Zeyada&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Mynerve&family=Zeyada&display=swap');
@@ -34,11 +34,12 @@ body {
     rgba(13, 101, 110, 1) 100%
   );
   color: #fff;
-  font-family: 'Neucha', sans-serif;
+  /* font-family: 'Neucha', sans-serif; */
   font-size: 1rem;
   border: 3px solid cyan;
   position: relative;
 }
+
 header {
   display: flex;
   flex-flow: column wrap;
@@ -50,7 +51,6 @@ header {
   min-width: fit-content;
   max-width: 100%;
   margin: auto;
-  border: 0.5rem dashed green;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 2rem;
 }
@@ -83,7 +83,7 @@ section {
   flex-grow: 1;
   /* min-width: fit-content; */
   width: fit-content;
-  min-height: 150px;
+  min-height: fit-content;
   /* border: solid 3px lime; */
   border-radius: 0.75rem;
 }
@@ -277,6 +277,7 @@ button {
   border-radius: 0.5rem;
   padding: 0.5rem;
   margin-bottom: 0.75rem;
+  font-family: 'Mynerve';
 }
 
 .item > input[type='checkbox'] {
@@ -301,6 +302,33 @@ button {
 .item > label {
   word-break: break-all;
   flex-grow: 1;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0.75rem;
+  padding: 0.75rem;
+  /* border: 3px solid red; */
+}
+
+.posts > p {
+  font-size: 1rem;
+  font-family: 'Press Start 2P', sans-serif;
+  /* font-family: 'Orbitron'; */
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0.75rem;
+  border: 3px solid red;
+  padding: 0.75rem;
+}
+
+.comments > p {
+  font-size: 1rem;
+  font-family: 'Press Start 2P', sans-serif;
 }
 
 @media only screen and (max-width: 600px) {
