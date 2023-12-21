@@ -7,6 +7,11 @@ import Header from './components/Header';
 import Loading from './components/Loading';
 import { TUser } from './types/user.type';
 import Users from './components/Users';
+import Posts from './components/Posts';
+import Comments from './components/Comments';
+
+import { TPost } from './types/posts.type';
+import { TComment } from './types/comments.type';
 
 export default function App() {
   const APIUSERS = import.meta.env.VITE_API_JSONUSERS;
@@ -14,6 +19,9 @@ export default function App() {
   const APICOMMENTS = import.meta.env.VITE_API_JSONCOMMENTS;
 
   const [users, setUsers] = useState<TUser[]>([]);
+  const [posts, setPosts] = useState<TPost[]>([]);
+  const [comments, setComments] = useState<TComment[]>([]);
+
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
@@ -74,6 +82,8 @@ export default function App() {
           </>
         )}
         {!fetchError && !loading && <Users users={users} />}
+        {!fetchError && !loading && <Posts posts={posts} />}
+        {!fetchError && !loading && <Comments comments={comments} />}
       </main>
       <Footer length={users?.length} />
     </>
