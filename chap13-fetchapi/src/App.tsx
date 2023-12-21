@@ -11,6 +11,7 @@ import AddItem from './components/AddItem';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Loading from './components/Loading';
 import Search from './components/Search';
 import { TItems } from './types/items.type';
 
@@ -27,6 +28,9 @@ export default function App() {
       : localStorage.setItem('items', JSON.stringify([]))
   );
 
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchItems = async function () {
       try {
@@ -37,16 +41,26 @@ export default function App() {
             'Content-Type': 'application/json',
           },
         });
+        if (!response.ok) throw Error('Did not received expected data!');
         const data = await response.json();
         console.log(data);
         setItems(data);
+        setFetchError(null);
+        setLoading(false);
+        console.log(`ErrorFetch: ${fetchError}`);
       } catch (err: unknown | TypeError) {
         console.error(`\x1b[31mError during request: ${err}`);
+        if (err instanceof Error) setFetchError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
-    (async function () {
-      await fetchItems();
-    })();
+
+    setTimeout(function () {
+      (async function () {
+        await fetchItems();
+      })();
+    }, 3000);
   }, []);
 
   // const saveLocalStorage = (item: SetStateAction<TItems[]>) => {
@@ -89,13 +103,24 @@ export default function App() {
         newItem={newItem}
       />
       <Search search={search} setSearch={setSearch} />
-      <Content
-        items={items?.filter((item) =>
-          item?.item.toLowerCase().includes(search?.toLowerCase())
+      <main>
+        {loading && <Loading />}
+        {fetchError && (
+          <p style={{ color: 'white' }}>Error: Data not fetched!</p>
         )}
-        handleChangeCheckbox={handleChangeCheckbox}
-        handleDelete={handleDelete}
-      />
+        {!fetchError && !loading && (
+          <Content
+            items={
+              items?.[0] &&
+              items?.filter((item) =>
+                item?.item.toLowerCase().includes(search?.toLowerCase())
+              )
+            }
+            handleChangeCheckbox={handleChangeCheckbox}
+            handleDelete={handleDelete}
+          />
+        )}
+      </main>
       <Footer length={items?.length} />
     </>
   );

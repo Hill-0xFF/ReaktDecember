@@ -75,6 +75,15 @@ section {
   border-radius: 13px;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: inherit;
+  max-width: inherit;
+  max-height: fit-content;
+}
+
 footer {
   display: flex;
   flex-flow: column wrap;

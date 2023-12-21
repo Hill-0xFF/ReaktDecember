@@ -8,7 +8,7 @@ export default function Content({
   handleDelete,
 }: ContentProps) {
   return (
-    <main>
+    <>
       {items?.[0] && items?.length ? (
         <ItemList
           items={items}
@@ -18,6 +18,6 @@ export default function Content({
       ) : (
         <p style={{ marginTop: '2rem' }}>No items in the list!</p>
       )}
-    </main>
+    </>
   );
 }
