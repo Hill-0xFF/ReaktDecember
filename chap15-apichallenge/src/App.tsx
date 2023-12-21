@@ -12,6 +12,7 @@ import Comments from './components/Comments';
 
 import { TPost } from './types/posts.type';
 import { TComment } from './types/comments.type';
+import Navbar from './components/Navbar';
 
 export default function App() {
   const APIUSERS = import.meta.env.VITE_API_JSONUSERS;
@@ -73,6 +74,7 @@ export default function App() {
   return (
     <>
       <Header title="JSONPLACEHOLDER CHALLENGE v.0.0.1" />
+      <Navbar />
       <main>
         {loading && <Loading />}
         {fetchError && (
