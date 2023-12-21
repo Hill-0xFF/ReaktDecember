@@ -1,4 +1,4 @@
-import { FormEvent, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import './css/styles2.css';
 
