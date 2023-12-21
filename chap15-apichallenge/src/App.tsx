@@ -5,7 +5,7 @@ import './css/styles2.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Loading from './components/Loading';
-import { User } from './types/user.type';
+import { TUser } from './types/user.type';
 import Users from './components/Users';
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
   const APIPOSTS = import.meta.env.VITE_API_JSONPOSTS;
   const APICOMMENTS = import.meta.env.VITE_API_JSONCOMMENTS;
 
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<TUser[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     const fetchUsers = async function () {
       try {
-        const response = await fetch(APICOMMENTS, {
+        const response = await fetch(APIUSERS, {
           method: 'GET',
           mode: 'cors', //DISABLE IT TO REMOVE THIS ERROR:
           // Response was blocked by CORB (Cross-Origin Read Blocking)

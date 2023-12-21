@@ -46,8 +46,9 @@ header {
     rgba(110, 13, 11, 0.5) 0%,
     rgba(13, 101, 110, 0.3) 100%
   );
-  width: 100%;
-  max-width: 800px;
+
+  min-width: fit-content;
+  max-width: 100%;
   margin: auto;
   border: 0.5rem dashed green;
   font-family: 'Press Start 2P', sans-serif;
@@ -68,11 +69,14 @@ main {
 section {
   display: flex;
   flex-direction: column;
-  min-width: 500px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  /* min-width: fit-content; */
+  width: fit-content;
   min-height: 150px;
-  justify-content: center;
-  border: solid 3px lime;
-  border-radius: 13px;
+  /* border: solid 3px lime; */
+  border-radius: 0.75rem;
 }
 
 .loading {
@@ -87,16 +91,16 @@ section {
 footer {
   display: flex;
   flex-flow: column wrap;
-  background: linear-gradient(
+  /* background: linear-gradient(
     rgba(110, 13, 11, 0.5) 0%,
     rgba(13, 101, 110, 0.3) 100%
-  );
+  ); */
   min-height: 4rem;
   width: fit-content;
   max-width: 100%;
-  /* border: 0.5rem dashed green; */
+  margin: auto;
   font-family: 'Press Start 2P', sans-serif;
-  font-size: 2rem;
+  font-size: 1rem;
   bottom: 0.5rem;
   /* position: absolute; */
 }
@@ -253,12 +257,15 @@ button {
   display: flex;
   align-items: center; /*aic */
   justify-content: center;
-  /* min-width: 1.5rem; */
+  min-width: 1.5rem;
   min-height: 1.5rem;
   padding-top: 1rem;
   gap: 1rem;
-  background-color: darkslategrey;
-  margin-bottom: 0.5rem;
+  border: 3px solid rgba(110, 13, 11, 0.5);
+  /* background-color: darkslategrey; */
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .item > input[type='checkbox'] {

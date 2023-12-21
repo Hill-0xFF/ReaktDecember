@@ -1,9 +1,21 @@
-import { User } from '@/types/user.type';
+import { TUser } from '@/types/user.type';
+
+import User from './User';
 
 type UsersProps = {
-  users: User[];
+  users: TUser[];
 };
 
 export default function Users({ users }: UsersProps) {
-  return <div>{users?.[0]?.id ?? users?.[0]}</div>;
+  return (
+    <section>
+      {users?.[0]?.id ? (
+        <User users={users} />
+      ) : (
+        <p style={{ backgroundColor: 'papayawhip', color: 'black' }}>
+          No users on the list!
+        </p>
+      )}
+    </section>
+  );
 }
