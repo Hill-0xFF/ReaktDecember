@@ -44,7 +44,8 @@ export default function App() {
   ]);
 
   function handleDeletePostPage(id: number) {
-    console.log(id);
+    const postList = posts?.filter((post) => post.id !== id);
+    setPosts(postList);
   }
 
   return (
