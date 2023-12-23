@@ -41,12 +41,6 @@
       "title": "Rational Gaze",
       "datetime": "December 23, 2023 9:05:39 AM",
       "body": "Desinformation, as straws are pulled at random!"
-    },
-    {
-      "id": 8,
-      "title": "ENV NOT WORKING",
-      "datetime": "December 23, 2023 9:32:41 AM",
-      "body": "Using env params for Axios's base url is not working properly.\nNeed to fix/find a fix for that!!!"
     }
   ]
 }
