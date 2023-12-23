@@ -58,12 +58,22 @@ export default function App() {
 
   useEffect(
     function () {
-      const filteredPosts = posts?.filter(
-        (post) =>
-          post.body.toLowerCase().includes(search.toLowerCase()) ||
-          post.title.toLowerCase().includes(search.toLowerCase())
-      );
-      setSearchResults(filteredPosts.reverse());
+      /*
+       Fixes 'posts?.filter is not a function' error when 'npm run dev' executes without 'npx json-server' is not running
+      */
+      try {
+        if (posts && posts?.length) {
+          const filteredPosts = posts?.filter(
+            (post) =>
+              post.body.toLowerCase().includes(search.toLowerCase()) ||
+              post.title.toLowerCase().includes(search.toLowerCase())
+          );
+          setSearchResults(filteredPosts.reverse());
+        }
+      } catch (err) {
+        if (err instanceof Error)
+          console.error(`\x1b[31mError fetching posts: ${err.message}`);
+      }
     },
     [posts, search]
   );
