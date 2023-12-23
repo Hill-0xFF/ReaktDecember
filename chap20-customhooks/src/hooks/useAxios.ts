@@ -38,13 +38,16 @@ export default function useAxios(dataUrl: string) {
             }
           }
         } finally {
-          isMount && setLoading(false);
+          isMount &&
+            setTimeout(function () {
+              setLoading(false);
+            }, 2000);
         }
       }
       fetchData(dataUrl);
 
       return function () {
-        console.log('Cleanup function....');
+        // console.log('Cleanup function....');
         isMount = false;
         source.cancel();
       };
