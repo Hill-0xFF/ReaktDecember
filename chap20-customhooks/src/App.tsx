@@ -15,6 +15,7 @@ import Navbar from './components/Navbar';
 import NewPost from './components/NewPost';
 import PostPage from './components/PostPage';
 import UpdatePost from './components/UpdatePost';
+import useWindowSize from './hooks/useWindowSize';
 import { TPosts } from './types/posts.type';
 import { TResults } from './types/results.type';
 
@@ -27,11 +28,12 @@ export default function App() {
   const [updateTitle, setUpdateTitle] = useState('');
   const [updateBody, setUpdateBody] = useState('');
   const [posts, setPosts] = useState<TPosts[]>([]);
+  const { width } = useWindowSize();
 
   useEffect(function () {
     const fetchPosts = async function () {
       try {
-        const response = await api.get('/', {
+        const response = await api.get('/posts', {
           timeout: 3000,
         });
         // if (!response.ok) throw Error (``) doesnt need this..Axios gets any errors
@@ -137,7 +139,7 @@ export default function App() {
 
   return (
     <>
-      <Header title="Blog v.0.0.1" />
+      <Header title="Blog v.0.0.1" width={width} />
       <Navbar search={search} setSearch={setSearch} />
       <Switch>
         <Route exact path="/">
