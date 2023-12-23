@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 // import './css/styles2.css';
 
-import { AxiosError } from 'axios';
 import { format } from 'date-fns';
 
 import api from './api/axios-posts';
@@ -15,6 +14,7 @@ import Navbar from './components/Navbar';
 import NewPost from './components/NewPost';
 import PostPage from './components/PostPage';
 import UpdatePost from './components/UpdatePost';
+import useAxios from './hooks/useAxios';
 import useWindowSize from './hooks/useWindowSize';
 import { TPosts } from './types/posts.type';
 import { TResults } from './types/results.type';
@@ -29,34 +29,19 @@ export default function App() {
   const [updateBody, setUpdateBody] = useState('');
   const [posts, setPosts] = useState<TPosts[]>([]);
   const { width } = useWindowSize();
+  const { data, fetchError, loading } = useAxios('http://localhost:3004/posts');
 
-  useEffect(function () {
-    const fetchPosts = async function () {
+  useEffect(
+    function () {
       try {
-        const response = await api.get('/posts', {
-          timeout: 3000,
-        });
-        // if (!response.ok) throw Error (``) doesnt need this..Axios gets any errors
-        setPosts(response?.data);
-        if (response && response?.data) {
-          setPosts(response.data);
-        }
+        setPosts(data);
       } catch (err) {
-        if (err instanceof AxiosError && err?.response) {
-          // If response is not a 2xx
-          // These errors comes from the Backend API
-          console.error(err.response.data);
-          console.error(err.response.status);
-          console.error(err.response.headers);
-        } else {
-          // Not a Axios error, so no response at all
-          if (err instanceof Error)
-            console.error(`\x1b[31mError during fetching: ${err.message}`);
-        }
+        if (err instanceof Error)
+          console.error(`\x1b[31mError during fetching app: ${err.message}`);
       }
-    };
-    fetchPosts();
-  }, []);
+    },
+    [data]
+  );
 
   useEffect(
     function () {
