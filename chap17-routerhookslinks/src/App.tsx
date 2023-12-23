@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 // import './css/styles2.css';
 
+import { format } from 'date-fns';
+
 import About from './components/About';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -53,7 +55,20 @@ export default function App() {
   }
 
   function handleSubmitPost() {
-    console.log('posting...');
+    if (postTitle && postBody) {
+      const id = posts?.length ? posts[posts.length - 1].id + 1 : 1;
+      const newPostTitle = postTitle;
+      const newPostBody = postBody;
+      const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+      const postObj = {
+        id,
+        title: newPostTitle,
+        datetime,
+        body: newPostBody,
+      };
+      const postList = [...posts, postObj];
+      setPosts(postList);
+    }
     history.push('/');
   }
 
