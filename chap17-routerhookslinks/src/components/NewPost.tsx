@@ -34,8 +34,9 @@ export default function NewPost({
           value={postBody}
           onChange={(evt) => setPostBody(evt.target.value)}
         ></textarea>
-
-        <button onClick={handleSubmitPost}>Post</button>
+        <div>
+          <button onClick={handleSubmitPost}>Post</button>
+        </div>
       </form>
     </main>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 // import './css/styles2.css';
 
@@ -48,6 +48,18 @@ export default function App() {
     },
   ]);
 
+  useEffect(
+    function () {
+      const filteredPosts = posts?.filter(
+        (post) =>
+          post.body.toLowerCase().includes(search.toLowerCase()) ||
+          post.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setSearchResults(filteredPosts.reverse());
+    },
+    [posts, search]
+  );
+
   function handleDeletePostPage(id: number) {
     const postList = posts?.filter((post) => post.id !== id);
     setPosts(postList);
@@ -55,23 +67,21 @@ export default function App() {
   }
 
   function handleSubmitPost() {
-    if (postTitle && postBody) {
-      const id = posts?.length ? posts[posts.length - 1].id + 1 : 1;
-      const newPostTitle = postTitle;
-      const newPostBody = postBody;
-      const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-      const postObj = {
-        id,
-        title: newPostTitle,
-        datetime,
-        body: newPostBody,
-      };
-      const postList = [...posts, postObj];
-      setPosts(postList);
-      setPostBody('');
-      setPostTitle('');
-      history.push('/');
-    }
+    const id = posts?.length ? posts[posts.length - 1].id + 1 : 1;
+    const newPostTitle = postTitle;
+    const newPostBody = postBody;
+    const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+    const postObj = {
+      id,
+      title: newPostTitle,
+      datetime,
+      body: newPostBody,
+    };
+    const postList = [...posts, postObj];
+    setPosts(postList);
+    setPostBody('');
+    setPostTitle('');
+    history.push('/');
   }
 
   return (
@@ -80,7 +90,8 @@ export default function App() {
       <Navbar search={search} setSearch={setSearch} />
       <Switch>
         <Route exact path="/">
-          <Home posts={posts} />
+          {/* <Home posts={posts} /> */}
+          <Home posts={searchResults} />
         </Route>
 
         <Route exact path="/post">
