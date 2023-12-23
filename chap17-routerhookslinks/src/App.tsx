@@ -68,8 +68,10 @@ export default function App() {
       };
       const postList = [...posts, postObj];
       setPosts(postList);
+      setPostBody('');
+      setPostTitle('');
+      history.push('/');
     }
-    history.push('/');
   }
 
   return (
