@@ -26,7 +26,7 @@ export default function NewPost({
         />
         <label htmlFor="postBody">Post:</label>
         <textarea
-          name=""
+          name="postBody"
           id="postBody"
           cols={30}
           rows={20}

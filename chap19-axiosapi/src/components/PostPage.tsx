@@ -5,11 +5,11 @@ import { PostPageProps } from '@/types/postpage.type';
 export default function PostPage({
   posts,
   handleDeletePostPage,
+  handleUpdatePage,
 }: PostPageProps) {
   const { id } = useParams<{ id: string }>();
   const post = posts.find((post) => post.id.toString() === id);
-  console.log(typeof id);
-  console.log(post);
+
   return (
     <main className="postpage">
       <article className="post">
@@ -25,6 +25,16 @@ export default function PostPage({
               >
                 Delete Post
               </button>
+
+              <button
+                className="post__button"
+                onClick={() => handleUpdatePage(post.id)}
+              >
+                Update Post
+              </button>
+              <Link to={`/post/update/${post.id}`}>
+                <button className="update__button">Update Link Post</button>
+              </Link>
             </div>
           </>
         )}
