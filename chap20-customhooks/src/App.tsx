@@ -129,7 +129,11 @@ export default function App() {
       <Switch>
         <Route exact path="/">
           {/* <Home posts={posts} /> */}
-          <Home posts={searchResults} />
+          <Home
+            posts={searchResults}
+            fetchError={fetchError}
+            loading={loading}
+          />
         </Route>
 
         <Route exact path="/post">
