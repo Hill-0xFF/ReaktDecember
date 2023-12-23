@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 // import './css/styles2.css';
 
 import About from './components/About';
@@ -14,8 +14,11 @@ import { TPosts } from './types/posts.type';
 import { TResults } from './types/results.type';
 
 export default function App() {
+  const history = useHistory();
   const [search, setSearch] = useState<string>('');
   const [searchResults, setSearchResults] = useState<TResults[]>([]);
+  const [postTitle, setPostTitle] = useState('');
+  const [postBody, setPostBody] = useState('');
   const [posts, setPosts] = useState<TPosts[]>([
     {
       id: 1,
@@ -46,6 +49,12 @@ export default function App() {
   function handleDeletePostPage(id: number) {
     const postList = posts?.filter((post) => post.id !== id);
     setPosts(postList);
+    history.push('/');
+  }
+
+  function handleSubmitPost() {
+    console.log('posting...');
+    history.push('/');
   }
 
   return (
@@ -58,7 +67,13 @@ export default function App() {
         </Route>
 
         <Route exact path="/post">
-          <NewPost />
+          <NewPost
+            postTitle={postTitle}
+            setPostTitle={setPostTitle}
+            postBody={postBody}
+            setPostBody={setPostBody}
+            handleSubmitPost={handleSubmitPost}
+          />
         </Route>
 
         <Route path="/post/:id">

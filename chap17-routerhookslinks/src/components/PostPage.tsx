@@ -6,7 +6,7 @@ export default function PostPage({
   posts,
   handleDeletePostPage,
 }: PostPageProps) {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const post = posts.find((post) => post.id.toString() === id);
   console.log(typeof id);
   console.log(post);
@@ -33,9 +33,7 @@ export default function PostPage({
             <h2>Post not found!</h2>
             <p>Well, thats unexpected!</p>
             <p>
-              <Link to="/">
-                <p>Click here and go back to homepage =D</p>
-              </Link>
+              <Link to="/">Click here and go back to homepage =D</Link>
             </p>
           </>
         )}
