@@ -36,8 +36,16 @@ body {
   color: #fff;
   /* font-family: 'Neucha', sans-serif; */
   font-size: 1rem;
-  border: 3px solid cyan;
+  /* border: 3px solid cyan; */
   position: relative;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 header {
