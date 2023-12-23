@@ -31,7 +31,7 @@ export default function App() {
   useEffect(function () {
     const fetchPosts = async function () {
       try {
-        const response = await api.get('/posts', {
+        const response = await api.get('/', {
           timeout: 3000,
         });
         // if (!response.ok) throw Error (``) doesnt need this..Axios gets any errors
@@ -131,7 +131,7 @@ export default function App() {
       history.push('/');
     } catch (err) {
       if (err instanceof Error)
-        console.error(`\x1b[31Error during post: ${err.message}`);
+        console.error(`\x1b[31mError during post: ${err.message}`);
     }
   }
 
