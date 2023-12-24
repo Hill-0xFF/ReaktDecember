@@ -56,7 +56,7 @@ export default function useAxios(dataUrl: string) {
     },
     [dataUrl]
   );
-  return { data, setData, fetchError, loading };
+  return { data, fetchError, loading };
 }
 
 // useEffect(function () {
