@@ -36,8 +36,8 @@ export interface IContext {
   width: number;
   fetchError: string | null;
   loading: boolean;
-  handleUpdatePost: (id: number) => Promise<void>; //(id: number): Promise<void>
-  handleDeletePost: (id: number) => Promise<void>; //(id: number): Promise<void>
+  handleUpdatePost: (id: number) => Promise<void>;
+  handleDeletePost: (id: number) => Promise<void>;
   handleSubmitPost: () => Promise<void>;
 }
 
