@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import { FaLaptop, FaTabletAlt, FaMobileAlt } from 'react-icons/fa';
 
 import { HeaderProps } from '@/types/header.type';
 
-import Data from '../context/dataContext';
+import usePosts from '@/hooks/usePosts';
 
 export default function Header({ title }: HeaderProps) {
-  const { width } = useContext(Data.DataContext);
+  const { width } = usePosts();
   return (
     <header className="header">
       {title}
