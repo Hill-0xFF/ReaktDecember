@@ -1,12 +1,10 @@
-import { NewPostProps } from '@/types/newpost.type';
+import { useContext } from 'react';
 
-export default function NewPost({
-  handleSubmitPost,
-  postBody,
-  postTitle,
-  setPostBody,
-  setPostTitle,
-}: NewPostProps) {
+import Data from '../context/dataContext';
+
+export default function NewPost() {
+  const { postTitle, setPostTitle, postBody, setPostBody, handleSubmitPost } =
+    useContext(Data.DataContext);
   return (
     <main>
       <h2>New Post</h2>

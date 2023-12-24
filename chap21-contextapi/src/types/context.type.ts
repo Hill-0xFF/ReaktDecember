@@ -23,5 +23,5 @@ export type TContext = {
   loading: boolean;
   // handleUpdatePost,
   // handleDeletePost,
-  // handleSubmitPost,
+  handleSubmitPost: () => Promise<void>;
 };

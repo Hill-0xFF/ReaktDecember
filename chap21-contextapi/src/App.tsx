@@ -98,29 +98,29 @@ export default function App() {
     }
   }
 
-  async function handleSubmitPost() {
-    const id = posts?.length ? posts[posts.length - 1].id + 1 : 1;
-    const newPostTitle = postTitle;
-    const newPostBody = postBody;
-    const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-    const postObj = {
-      id,
-      title: newPostTitle,
-      datetime,
-      body: newPostBody,
-    };
-    try {
-      const response = await api.post('/posts', postObj);
-      const postList = [...posts, response.data];
-      setPosts(postList);
-      setPostBody('');
-      setPostTitle('');
-      history.push('/');
-    } catch (err) {
-      if (err instanceof Error)
-        console.error(`\x1b[31mError during post: ${err.message}`);
-    }
-  }
+  // async function handleSubmitPost() {
+  //   const id = posts?.length ? posts[posts.length - 1].id + 1 : 1;
+  //   const newPostTitle = postTitle;
+  //   const newPostBody = postBody;
+  //   const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+  //   const postObj = {
+  //     id,
+  //     title: newPostTitle,
+  //     datetime,
+  //     body: newPostBody,
+  //   };
+  //   try {
+  //     const response = await api.post('/posts', postObj);
+  //     const postList = [...posts, response.data];
+  //     setPosts(postList);
+  //     setPostBody('');
+  //     setPostTitle('');
+  //     history.push('/');
+  //   } catch (err) {
+  //     if (err instanceof Error)
+  //       console.error(`\x1b[31mError during post: ${err.message}`);
+  //   }
+  // }
 
   return (
     <>
@@ -130,15 +130,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Home} />
 
-          <Route exact path="/post">
-            <NewPost
-              postTitle={postTitle}
-              setPostTitle={setPostTitle}
-              postBody={postBody}
-              setPostBody={setPostBody}
-              handleSubmitPost={handleSubmitPost}
-            />
-          </Route>
+          <Route exact path="/post" component={NewPost} />
 
           <Route exact path="/post/:id">
             <PostPage

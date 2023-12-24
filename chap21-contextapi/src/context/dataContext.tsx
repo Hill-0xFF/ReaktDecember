@@ -90,24 +90,24 @@ const DataProvider = ({ children }) => {
       history.push('/');
     } catch (err) {
       if (err instanceof AxiosError && err.response) {
-        console.error(`\x1b[31mError during update: ${err.response?.status}`);
-        console.error(`\x1b[31mError during update: ${err.response?.data}`);
-        console.error(`\x1b[31mError during update: ${err.response?.headers}`);
+        console.error(`\x1b[31mError during delete: ${err.response?.status}`);
+        console.error(`\x1b[31mError during delete: ${err.response?.data}`);
+        console.error(`\x1b[31mError during delete: ${err.response?.headers}`);
       }
       if (err instanceof Error)
-        console.error(`\x1b[31mError during update: ${err.message}`);
+        console.error(`\x1b[31mError during delete: ${err.message}`);
     }
   }
 
   async function handleSubmitPost() {
     try {
-      const id: number = posts?.length ? posts[posts.length].id + 1 : 1;
+      const id: number = posts?.length ? posts[posts.length - 1].id + 1 : 1;
       const datetime: string = format(new Date(), 'MMMM dd, yyyy pp');
       const title: string = postTitle;
       const body: string = postBody;
       const postObj = { id, title, datetime, body };
 
-      const response = await api.post('/post', postObj);
+      const response = await api.post('/posts', postObj);
       const addedPost = [...posts, response.data];
       setPosts(addedPost);
 
@@ -116,12 +116,12 @@ const DataProvider = ({ children }) => {
       history.push('/');
     } catch (err) {
       if (err instanceof AxiosError && err.response) {
-        console.error(`\x1b[31mError during update: ${err.response?.status}`);
-        console.error(`\x1b[31mError during update: ${err.response?.data}`);
-        console.error(`\x1b[31mError during update: ${err.response?.headers}`);
+        console.error(`\x1b[31mError during submit: ${err.response?.status}`);
+        console.error(`\x1b[31mError during submit: ${err.response?.data}`);
+        console.error(`\x1b[31mError during submit: ${err.response?.headers}`);
       }
       if (err instanceof Error)
-        console.error(`\x1b[31mError during update: ${err.message}`);
+        console.error(`\x1b[31mError during submit: ${err.message}`);
     }
   }
 
@@ -145,7 +145,7 @@ const DataProvider = ({ children }) => {
         loading,
         // handleUpdatePost,
         // handleDeletePost,
-        // handleSubmitPost,
+        handleSubmitPost,
       }}
     >
       {children}
