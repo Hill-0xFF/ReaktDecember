@@ -1,4 +1,4 @@
 export type HeaderProps = {
-  width: number;
   title: string;
+  // width: number;
 };

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 
+import { TPosts } from '@/types/posts.type';
+
 import axios, { AxiosError } from 'axios';
 
 // import api from '../api/axios-posts';
 
 export default function useAxios(dataUrl: string) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<TPosts[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 

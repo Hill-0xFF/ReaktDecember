@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { NavbarProps } from '@/types/navbar.type';
+import Data from '../context/dataContext';
 
-export default function Navbar({ search, setSearch }: NavbarProps) {
+export default function Navbar() {
+  const { search } = useContext(Data.DataContext);
+  const { setSearch } = useContext(Data.DataContext);
   return (
     <nav className="nav">
       <form

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 // import './css/styles2.css';
 
@@ -14,56 +14,56 @@ import Navbar from './components/Navbar';
 import NewPost from './components/NewPost';
 import PostPage from './components/PostPage';
 import UpdatePost from './components/UpdatePost';
-import useAxios from './hooks/useAxios';
-import useWindowSize from './hooks/useWindowSize';
+import Data from './context/dataContext';
+// import useWindowSize from './hooks/useWindowSize';
 import { TPosts } from './types/posts.type';
-import { TResults } from './types/results.type';
+// import { TResults } from './types/results.type';
 
 export default function App() {
   const history = useHistory();
-  const [search, setSearch] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<TResults[]>([]);
+  // const [search, setSearch] = useState<string>('');
+  // const [searchResults, setSearchResults] = useState<TResults[]>([]);
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
   const [updateTitle, setUpdateTitle] = useState('');
   const [updateBody, setUpdateBody] = useState('');
   const [posts, setPosts] = useState<TPosts[]>([]);
-  const { width } = useWindowSize();
-  const { data, fetchError, loading } = useAxios('http://localhost:3004/posts');
+  // const { width } = useWindowSize();
+  // const { data, fetchError, loading } = useAxios('http://localhost:3004/posts');
 
-  useEffect(
-    function () {
-      try {
-        setPosts(data);
-      } catch (err) {
-        if (err instanceof Error)
-          console.error(`\x1b[31mError during fetching app: ${err.message}`);
-      }
-    },
-    [data]
-  );
+  // useEffect(
+  //   function () {
+  //     try {
+  //       setPosts(data);
+  //     } catch (err) {
+  //       if (err instanceof Error)
+  //         console.error(`\x1b[31mError during fetching app: ${err.message}`);
+  //     }
+  //   },
+  //   [data]
+  // );
 
-  useEffect(
-    function () {
-      /*
-       Fixes 'posts?.filter is not a function' error when 'npm run dev' executes without 'npx json-server' is not running
-      */
-      try {
-        if (posts && posts?.length) {
-          const filteredPosts = posts?.filter(
-            (post) =>
-              post.body.toLowerCase().includes(search.toLowerCase()) ||
-              post.title.toLowerCase().includes(search.toLowerCase())
-          );
-          setSearchResults(filteredPosts.reverse());
-        }
-      } catch (err) {
-        if (err instanceof Error)
-          console.error(`\x1b[31mError fetching posts: ${err.message}`);
-      }
-    },
-    [posts, search]
-  );
+  // useEffect(
+  //   function () {
+  //     /*
+  //      Fixes 'posts?.filter is not a function' error when 'npm run dev' executes without 'npx json-server' is not running
+  //     */
+  //     try {
+  //       if (posts && posts?.length) {
+  //         const filteredPosts = posts?.filter(
+  //           (post) =>
+  //             post.body.toLowerCase().includes(search.toLowerCase()) ||
+  //             post.title.toLowerCase().includes(search.toLowerCase())
+  //         );
+  //         setSearchResults(filteredPosts.reverse());
+  //       }
+  //     } catch (err) {
+  //       if (err instanceof Error)
+  //         console.error(`\x1b[31mError fetching posts: ${err.message}`);
+  //     }
+  //   },
+  //   [posts, search]
+  // );
 
   async function handleDeletePostPage(id: number) {
     try {
@@ -124,51 +124,46 @@ export default function App() {
 
   return (
     <>
-      <Header title="Blog v.0.0.1" width={width} />
-      <Navbar search={search} setSearch={setSearch} />
-      <Switch>
-        <Route exact path="/">
-          {/* <Home posts={posts} /> */}
-          <Home
-            posts={searchResults}
-            fetchError={fetchError}
-            loading={loading}
-          />
-        </Route>
+      <Data.DataProvider>
+        <Header title="Blog v.0.0.1" />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
 
-        <Route exact path="/post">
-          <NewPost
-            postTitle={postTitle}
-            setPostTitle={setPostTitle}
-            postBody={postBody}
-            setPostBody={setPostBody}
-            handleSubmitPost={handleSubmitPost}
-          />
-        </Route>
+          <Route exact path="/post">
+            <NewPost
+              postTitle={postTitle}
+              setPostTitle={setPostTitle}
+              postBody={postBody}
+              setPostBody={setPostBody}
+              handleSubmitPost={handleSubmitPost}
+            />
+          </Route>
 
-        <Route exact path="/post/:id">
-          <PostPage
-            posts={posts}
-            handleDeletePostPage={handleDeletePostPage}
-            handleUpdatePage={handleUpdatePage}
-          />
-        </Route>
+          <Route exact path="/post/:id">
+            <PostPage
+              posts={posts}
+              handleDeletePostPage={handleDeletePostPage}
+              handleUpdatePage={handleUpdatePage}
+            />
+          </Route>
 
-        <Route exact path="/post/update/:id">
-          <UpdatePost
-            posts={posts}
-            updateTitle={updateTitle}
-            setUpdateTitle={setUpdateTitle}
-            updateBody={updateBody}
-            setUpdateBody={setUpdateBody}
-            handleUpdatePost={handleUpdatePost}
-          />
-        </Route>
+          <Route exact path="/post/update/:id">
+            <UpdatePost
+              posts={posts}
+              updateTitle={updateTitle}
+              setUpdateTitle={setUpdateTitle}
+              updateBody={updateBody}
+              setUpdateBody={setUpdateBody}
+              handleUpdatePost={handleUpdatePost}
+            />
+          </Route>
 
-        <Route exact path="/about" component={About} />
-        <Route path="*" component={MissingPage} />
-      </Switch>
-      <Footer />
+          <Route exact path="/about" component={About} />
+          <Route path="*" component={MissingPage} />
+        </Switch>
+        <Footer />
+      </Data.DataProvider>
     </>
   );
 }
