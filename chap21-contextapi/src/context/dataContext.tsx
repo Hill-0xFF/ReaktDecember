@@ -44,11 +44,9 @@ export interface IContext {
 interface DataProviderProps {
   children: React.ReactNode;
 }
-// const context: NonNullable<IContext> = {};
-// It generates all kind of errors... this Intellisense sugestions doesnt work
-// const DataContext: Context<NonNullable<unknown>> = createContext({});
+const context: NonNullable<IContext> = {};
 
-const DataContext = createContext<IContext | NonNullable<IContext>>({});
+const DataContext = createContext<IContext | NonNullable<IContext>>(context);
 
 const DataProvider = ({ children }: DataProviderProps) => {
   const [posts, setPosts] = useState<TPosts[]>([]);
