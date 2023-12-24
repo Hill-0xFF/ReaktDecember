@@ -1,7 +1,12 @@
-import { createContext, useState, useEffect } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { TContext } from '@/types/context.type';
 import { TPosts } from '@/types/posts.type';
 import { TResults } from '@/types/results.type';
 
@@ -13,10 +18,44 @@ import { format } from 'date-fns';
 
 import api from '../api/axios-posts';
 
+export interface IContext {
+  posts: TPosts[];
+  setPosts: Dispatch<React.SetStateAction<TPosts[]>>;
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
+  searchResults: TResults[];
+  setSearchresults: Dispatch<React.SetStateAction<TResults[]>>;
+  postTitle: string;
+  setPostTitle: Dispatch<SetStateAction<string>>;
+  postBody: string;
+  setPostBody: Dispatch<SetStateAction<string>>;
+  updateTitle: string;
+  setUpdateTitle: Dispatch<SetStateAction<string>>;
+  updateBody: string;
+  setUpdateBody: Dispatch<SetStateAction<string>>;
+  width: number;
+  fetchError: string | null;
+  loading: boolean;
+  handleUpdatePost: (id: number) => Promise<void>; //(id: number): Promise<void>
+  handleDeletePost: (id: number) => Promise<void>; //(id: number): Promise<void>
+  handleSubmitPost: () => Promise<void>;
+  // value: React.ReactNode;
+}
+
+interface DataProviderProps {
+  children: React.ReactNode;
+}
+
 // It generates all kind of errors... this Intellisense sugestions doesnt work
 // const DataContext: Context<NonNullable<unknown>> = createContext({});
-const DataContext = createContext<TContext>({});
-const DataProvider = ({ children }) => {
+const DataContext = createContext<IContext>({});
+
+const DataProvider = ({ children }: DataProviderProps) => {
+  //props above type: { [x: string]: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }
+  // DataProvider.propTypes = {
+  //   children: PropTypes.any,
+  // };
+
   const [posts, setPosts] = useState<TPosts[]>([]);
   const [search, setSearch] = useState<string>('');
   const [searchResults, setSearchResults] = useState<TResults[]>([]);
@@ -153,4 +192,4 @@ const DataProvider = ({ children }) => {
   );
 };
 
-export default { DataProvider, DataContext };
+export default { DataContext, DataProvider };

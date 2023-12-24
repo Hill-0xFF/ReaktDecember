@@ -10,12 +10,12 @@ import Navbar from './components/Navbar';
 import NewPost from './components/NewPost';
 import PostPage from './components/PostPage';
 import UpdatePost from './components/UpdatePost';
-import Data from './context/dataContext';
+import DataProvider from './context/dataContext';
 
 export default function App() {
   return (
     <>
-      <Data.DataProvider>
+      <DataProvider.DataProvider>
         <Header title="Blog v.0.0.1" />
         <Navbar />
         <Switch>
@@ -31,7 +31,7 @@ export default function App() {
           <Route path="*" component={MissingPage} />
         </Switch>
         <Footer />
-      </Data.DataProvider>
+      </DataProvider.DataProvider>
     </>
   );
 }
