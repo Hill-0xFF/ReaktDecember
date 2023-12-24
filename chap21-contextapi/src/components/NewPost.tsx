@@ -1,10 +1,8 @@
-import { useContext } from 'react';
-
-import Data from '../context/dataContext';
+import usePosts from '@/hooks/usePosts';
 
 export default function NewPost() {
   const { postTitle, setPostTitle, postBody, setPostBody, handleSubmitPost } =
-    useContext(Data.DataContext);
+    usePosts();
   return (
     <main>
       <h2>New Post</h2>
