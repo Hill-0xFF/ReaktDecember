@@ -1,12 +1,9 @@
-import { useContext } from 'react';
+import usePosts from '@/hooks/usePosts';
 
-import Data, { IContext } from '../context/dataContext';
 import Feed from './Feed';
 
 export default function Home() {
-  const { loading, fetchError, searchResults } = useContext<
-    IContext | NonNullable<IContext>
-  >(Data.DataContext);
+  const { loading, fetchError, searchResults } = usePosts();
   return (
     <main className="home">
       {loading && <p className="status">Loading...</p>}
