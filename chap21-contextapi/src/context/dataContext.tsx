@@ -143,8 +143,8 @@ const DataProvider = ({ children }) => {
         width,
         fetchError,
         loading,
-        // handleUpdatePost,
-        // handleDeletePost,
+        handleUpdatePost,
+        handleDeletePost,
         handleSubmitPost,
       }}
     >

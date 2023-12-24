@@ -21,7 +21,7 @@ export type TContext = {
   width: number;
   fetchError: string | null;
   loading: boolean;
-  // handleUpdatePost,
-  // handleDeletePost,
+  handleUpdatePost: (id: number) => Promise<void>; //(id: number): Promise<void>
+  handleDeletePost: (id: number) => Promise<void>; //(id: number): Promise<void>
   handleSubmitPost: () => Promise<void>;
 };

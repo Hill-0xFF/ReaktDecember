@@ -23,8 +23,8 @@ export default function App() {
   const history = useHistory();
   // const [search, setSearch] = useState<string>('');
   // const [searchResults, setSearchResults] = useState<TResults[]>([]);
-  const [postTitle, setPostTitle] = useState('');
-  const [postBody, setPostBody] = useState('');
+  // const [postTitle, setPostTitle] = useState('');
+  // const [postBody, setPostBody] = useState('');
   const [updateTitle, setUpdateTitle] = useState('');
   const [updateBody, setUpdateBody] = useState('');
   const [posts, setPosts] = useState<TPosts[]>([]);
@@ -77,9 +77,9 @@ export default function App() {
     }
   }
 
-  function handleUpdatePage(id: number) {
-    history.push(`/post/update/${id}`);
-  }
+  // function handleUpdatePage(id: number) {
+  //   history.push(`/post/update/${id}`);
+  // }
 
   async function handleUpdatePost(id: number) {
     const datetime = format(new Date(), 'MMMM dd, yyyy pp');
@@ -132,13 +132,7 @@ export default function App() {
 
           <Route exact path="/post" component={NewPost} />
 
-          <Route exact path="/post/:id">
-            <PostPage
-              posts={posts}
-              handleDeletePostPage={handleDeletePostPage}
-              handleUpdatePage={handleUpdatePage}
-            />
-          </Route>
+          <Route exact path="/post/:id" component={PostPage} />
 
           <Route exact path="/post/update/:id">
             <UpdatePost

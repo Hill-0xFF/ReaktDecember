@@ -1,14 +1,12 @@
+import { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { PostPageProps } from '@/types/postpage.type';
+import Data from '../context/dataContext';
 
-export default function PostPage({
-  posts,
-  handleDeletePostPage,
-  handleUpdatePage,
-}: PostPageProps) {
+export default function PostPage() {
+  const { posts, handleDeletePost } = useContext(Data.DataContext);
   const { id } = useParams<{ id: string }>();
-  const post = posts.find((post) => post.id.toString() === id);
+  const post = posts?.find((post) => post.id.toString() === id);
 
   return (
     <main className="postpage">
@@ -21,17 +19,12 @@ export default function PostPage({
             <div>
               <button
                 className="post__button"
-                onClick={() => handleDeletePostPage(post.id)}
+                onClick={() => handleDeletePost(post.id)}
               >
                 Delete Post
               </button>
 
-              <button
-                className="post__button"
-                onClick={() => handleUpdatePage(post.id)}
-              >
-                Update Post
-              </button>
+              {/* <button className="post__button" onClick={() => handleUpdatePage(post.id)} >Update Post</button> */}
               <Link to={`/post/update/${post.id}`}>
                 <button className="update__button">Update Link Post</button>
               </Link>
@@ -43,7 +36,7 @@ export default function PostPage({
             <h2>Post not found!</h2>
             <p>Well, thats unexpected!</p>
             <p>
-              <Link to="/">Click here and go back to homepage =D</Link>
+              <Link to={`/post/${id}`}>Click here and go back =D</Link>
             </p>
           </>
         )}

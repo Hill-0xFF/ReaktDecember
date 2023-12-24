@@ -1,16 +1,17 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import { UpdatePostProps } from '@/types/update.type';
+import Data from '../context/dataContext';
 
-export default function UpdatePost({
-  posts,
-  updateTitle,
-  setUpdateTitle,
-  updateBody,
-  setUpdateBody,
-  handleUpdatePost,
-}: UpdatePostProps) {
+export default function UpdatePost() {
+  const {
+    posts,
+    updateTitle,
+    setUpdateTitle,
+    updateBody,
+    setUpdateBody,
+    handleUpdatePost,
+  } = useContext(Data.DataContext);
   const { id } = useParams<{ id: string }>();
   const post = posts?.find((post) => post?.id.toString() === id);
 
@@ -64,7 +65,7 @@ export default function UpdatePost({
         <>
           <h2>Post Not Found!</h2>
           <p>
-            <Link to="/">Go back to home</Link>
+            <Link to={`/post/${id}`}>Go back</Link>
           </p>
         </>
       )}
