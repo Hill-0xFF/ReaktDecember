@@ -46,8 +46,8 @@ export default function UpdatePost() {
 
             <label htmlFor="updateBody">Update Post:</label>
             <textarea
-              name="updatePost"
-              id="updatePost"
+              name="updateBody"
+              id="updateBody"
               cols={30}
               rows={20}
               value={updateBody}
