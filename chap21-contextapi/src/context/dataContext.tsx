@@ -51,11 +51,6 @@ interface DataProviderProps {
 const DataContext = createContext<IContext | NonNullable<IContext>>({});
 
 const DataProvider = ({ children }: DataProviderProps) => {
-  //props above type: { [x: string]: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }
-  // DataProvider.propTypes = {
-  //   children: PropTypes.any,
-  // };
-
   const [posts, setPosts] = useState<TPosts[]>([]);
   const [search, setSearch] = useState<string>('');
   const [searchResults, setSearchResults] = useState<TResults[]>([]);
