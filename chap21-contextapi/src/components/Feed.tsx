@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-
 import { TPosts } from '@/types/posts.type';
 
-import Data from '../context/dataContext';
+import usePosts from '@/hooks/usePosts';
+
 import Post from './Post';
 
 export default function Feed() {
-  const { searchResults } = useContext(Data.DataContext);
+  const { searchResults } = usePosts();
   return (
     <>
       {searchResults?.[0] && searchResults?.length ? (
