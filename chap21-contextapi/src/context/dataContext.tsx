@@ -24,7 +24,7 @@ export interface IContext {
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
   searchResults: TResults[];
-  setSearchresults: Dispatch<React.SetStateAction<TResults[]>>;
+  setSearchResults: Dispatch<React.SetStateAction<TResults[]>>;
   postTitle: string;
   setPostTitle: Dispatch<SetStateAction<string>>;
   postBody: string;
@@ -39,7 +39,6 @@ export interface IContext {
   handleUpdatePost: (id: number) => Promise<void>; //(id: number): Promise<void>
   handleDeletePost: (id: number) => Promise<void>; //(id: number): Promise<void>
   handleSubmitPost: () => Promise<void>;
-  // value: React.ReactNode;
 }
 
 interface DataProviderProps {
@@ -48,6 +47,7 @@ interface DataProviderProps {
 
 // It generates all kind of errors... this Intellisense sugestions doesnt work
 // const DataContext: Context<NonNullable<unknown>> = createContext({});
+
 const DataContext = createContext<IContext>({});
 
 const DataProvider = ({ children }: DataProviderProps) => {
@@ -168,9 +168,11 @@ const DataProvider = ({ children }: DataProviderProps) => {
     <DataContext.Provider
       value={{
         posts,
+        setPosts,
         search,
         setSearch,
         searchResults,
+        setSearchResults,
         postTitle,
         setPostTitle,
         postBody,

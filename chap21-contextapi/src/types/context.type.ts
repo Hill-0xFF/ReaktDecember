@@ -9,7 +9,7 @@ export type TContext = {
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
   searchResults: TResults[];
-  setSearchresults: Dispatch<React.SetStateAction<TResults[]>>;
+  setSearchResults: Dispatch<React.SetStateAction<TResults[]>>;
   postTitle: string;
   setPostTitle: Dispatch<SetStateAction<string>>;
   postBody: string;
