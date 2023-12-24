@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import Data from '../context/dataContext';
+import Data, { IContext } from '../context/dataContext';
 
 export default function PostPage() {
-  const { posts, handleDeletePost } = useContext(Data.DataContext);
+  const { posts, handleDeletePost } = useContext<IContext>(Data.DataContext);
   const { id } = useParams<{ id: string }>();
   const post = posts?.find((post) => post.id.toString() === id);
 

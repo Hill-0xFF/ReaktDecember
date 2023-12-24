@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import Data from '../context/dataContext';
+import Data, { IContext } from '../context/dataContext';
 
 export default function UpdatePost() {
   const {
@@ -11,7 +11,7 @@ export default function UpdatePost() {
     updateBody,
     setUpdateBody,
     handleUpdatePost,
-  } = useContext(Data.DataContext);
+  } = useContext<IContext>(Data.DataContext);
   const { id } = useParams<{ id: string }>();
   const post = posts?.find((post) => post?.id.toString() === id);
 

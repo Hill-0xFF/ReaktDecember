@@ -44,11 +44,11 @@ export interface IContext {
 interface DataProviderProps {
   children: React.ReactNode;
 }
-
+// const context: NonNullable<IContext> = {};
 // It generates all kind of errors... this Intellisense sugestions doesnt work
 // const DataContext: Context<NonNullable<unknown>> = createContext({});
 
-const DataContext = createContext<IContext>({});
+const DataContext = createContext<IContext | NonNullable<IContext>>({});
 
 const DataProvider = ({ children }: DataProviderProps) => {
   //props above type: { [x: string]: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }
