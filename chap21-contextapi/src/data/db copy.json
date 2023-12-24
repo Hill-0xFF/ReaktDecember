@@ -2,8 +2,8 @@
   "posts": [
     {
       "id": 1,
-      "title": "My First Post",
-      "datetime": "July 01, 2021 11:17:36 AM",
+      "title": "1st My First Post",
+      "datetime": "December 24, 2023 8:58:02 AM",
       "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!"
     },
     {
@@ -38,9 +38,27 @@
     },
     {
       "id": 7,
-      "title": "Rational Gaze",
-      "datetime": "December 23, 2023 9:05:39 AM",
-      "body": "Desinformation, as straws are pulled at random!"
+      "title": "Update: Irrational Gaze",
+      "datetime": "December 23, 2023 10:51:52 AM",
+      "body": "Update: Desinformation, as straws are pulled at random!"
+    },
+    {
+      "id": 8,
+      "title": "New Post Context",
+      "datetime": "December 24, 2023 9:05:39 AM",
+      "body": "New Post Context is a way to wrap your head around the fur, in a carpet full of sour."
+    },
+    {
+      "id": 9,
+      "title": "Type Context UP",
+      "datetime": "December 24, 2023 9:08:54 AM",
+      "body": "Trying to create typed context...."
+    },
+    {
+      "id": 10,
+      "title": "Finally Fixed",
+      "datetime": "December 24, 2023 9:22:21 AM",
+      "body": "Fixed createContext error with a cast to the expected type for an empty object!!!!!!!!!!"
     }
   ]
 }
