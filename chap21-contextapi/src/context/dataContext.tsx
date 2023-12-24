@@ -44,9 +44,11 @@ export interface IContext {
 interface DataProviderProps {
   children: React.ReactNode;
 }
-const context: NonNullable<IContext> = {};
+// const context: NonNullable<IContext> = {};
 
-const DataContext = createContext<IContext | NonNullable<IContext>>(context);
+const DataContext = createContext<IContext | NonNullable<IContext>>(
+  {} as IContext
+);
 
 const DataProvider = ({ children }: DataProviderProps) => {
   const [posts, setPosts] = useState<TPosts[]>([]);
